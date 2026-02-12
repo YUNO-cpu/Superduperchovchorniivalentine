@@ -683,3 +683,17 @@ button:active {
     0% { transform: translateY(0); }
     100% { transform: translateY(-20px); }
 }
+
+/* Ишлэлийн цонхыг эхлээд нуух */
+.modal {
+    display: none; /* Үүнийг заавал шалгаарай */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    align-items: center;
+    justify-content: center;
+}
