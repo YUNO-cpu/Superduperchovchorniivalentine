@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Valentine's Love Games Collection 💕</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💖 Хайрын Тоглоомын Цуглуулга 💖</h1>
+            <p>Валентины өдрийн тусгай 9 тоглоом</p>
+            <div class="hearts-decoration">💕💖💕</div>
+        </header>
+
+        <!-- Game Selection Menu -->
+        <div id="gameMenu" class="game-menu">
+            <!-- Original 4 games -->
+            <div class="game-card" onclick="startGame('memory')">
+                <h3>💝 Санах Ой Тоглоом</h3>
+                <p>Хайрын дүрсүүдийг хослуул</p>
+            </div>
+            <div class="game-card" onclick="startGame('heart-click')">
+                <h3>💓 Зүрх Товших</h3>
+                <p>Зүрхнүүдийг хурдан товш</p>
+            </div>
+            <div class="game-card" onclick="startGame('love-quiz')">
+                <h3>💕 Хайрын Асуулт</h3>
+                <p>Хайрын тухай мэдлэгээ шалгаарай</p>
+            </div>
+            <div class="game-card" onclick="startGame('word-guess')">
+                <h3>💌 Үг Тааварлах</h3>
+                <p>Романтик үгсийг тааварлаарай</p>
+            </div>
+            
+            <!-- New 5 games -->
+            <div class="game-card" onclick="startGame('tic-tac-toe')">
+                <h3>💗 Хайрын X-O</h3>
+                <p>Зүрхтэй X-O тоглоом</p>
+            </div>
+            <div class="game-card" onclick="startGame('claw-machine')">
+                <h3>🎁 Хайрын Автомат</h3>
+                <p>Эгдүү бэлгүүдийг барьцгаа</p>
+            </div>
+            <div class="game-card" onclick="startGame('love-maze')">
+                <h3>🌹 Хайрын Лабиринт</h3>
+                <p>Хайр руу хөтлөх замыг олоорой</p>
+            </div>
+            <div class="game-card" onclick="startGame('love-calculator')">
+                <h3>💘 Хайрын Тооцоолуур</h3>
+                <p>Хайрын хувийг тооцоолоорой</p>
+            </div>
+            <div class="game-card" onclick="startGame('cupid-arrow')">
+                <h3>🏹 Купидоны Сум</h3>
+                <p>Хайрын зүрхийг байд оноорой</p>
+            </div>
+        </div>
+
+        <!-- Original Games (keeping existing ones) -->
+        <!-- Memory Game -->
+        <div id="memoryGame" class="game-container" style="display:none;">
+            <h2>💝 Санах Ой Тоглоом</h2>
+            <div class="score">Оноо: <span id="memoryScore">0</span></div>
+            <div id="memoryBoard" class="memory-board"></div>
+            <button onclick="resetMemoryGame()">Дахин эхлэх</button>
+            <button onclick="backToMenu()">Буцах</button>
+        </div>
+
+        <!-- Heart Click Game -->
+        <div id="heartClickGame" class="game-container" style="display:none;">
+            <h2>💓 Зүрх Товших Тоглоом</h2>
+            <div class="score">Оноо: <span id="heartScore">0</span> | Цаг: <span id="heartTime">30</span>с</div>
+            <div id="heartArea" class="heart-area"></div>
+            <button onclick="startHeartGame()">Эхлэх</button>
+            <button onclick="backToMenu()">Буцах</button>
+        </div>
+
+        <!-- Love Quiz -->
+        <div id="loveQuiz" class="game-container" style="display:none;">
+            <h2>💕 Хайрын Асуулт</h2>
+            <div class="quiz-container">
+                <div id="quizQuestion"></div>
+                <div id="quizOptions"></div>
+                <div class="score">Зөв хариулт: <span id="quizScore">0</span>/5</div>
+            </div>
+            <button onclick="backToMenu()">Буцах</button>
+        </div>
+
+        <!-- Word Guess Game -->
+        <div id="wordGuess" class="game-container" style="display:none;">
+            <h2>💌 Үг Тааварлах</h2>
+            <div class="word-display" id="wordDisplay"></div>
+            <div class="alphabet" id="alphabet"></div>
+            <div class="score">Үлдсэн завтаг: <span id="guessesLeft">6</span></div>
+            <button onclick="resetWordGame()">Дахин эхлэх</button>
+            <button onclick="backToMenu()">Буцах</button>
+        </div>
+
+        <!-- NEW GAMES -->
+        <!-- Tic Tac Toe Game -->
+        <div id="ticTacToe" class="game-container" style="display:none;">
+            <h2>💗 Хайрын X-O Тоглоом</h2>
+            <div class="game-status">
+                <span id="gameStatus">💖 Хайрын ээлж</span>
+            </div>
+            <div id="ticTacBoard" class="tic-tac-board"></div>
+            <div class="game-controls">
+                <button onclick="resetTicTacToe()">Шинэ тоглоом</button>
+                <button onclick="backToMenu()">Буцах</button>
+            </div>
+        </div>
+
+        <!-- Claw Machine Game -->
+        <div id="clawMachine" class="game-container" style="display:none;">
+            <h2>🎁 Хайрын Автомат</h2>
+            <div class="score">Авсан бэлэг: <span id="clawScore">0</span> | Үлдсэн оролдлого: <span id="clawTries">5</span></div>
+            <div class="claw-machine">
+                <div class="claw" id="claw">🤏</div>
+                <div class="prizes-area" id="prizesArea"></div>
+                <div class="controls">
+                    <button id="moveLeftBtn">⬅️</button>
+                    <button id="grabBtn" onclick="grabPrize()">💪 Бэлэн!</button>
+                    <button id="moveRightBtn">➡️</button>
+                </div>
+            </div>
+            <button onclick="resetClawGame()">Дахин эхлэх</button>
+            <button onclick="backToMenu()">Буцах</button>
+        </div>
+
+        <!-- Love Maze Game -->
+        <div id="loveMaze" class="game-container" style="display:none;">
+            <h2>🌹 Хайрын Лабиринт</h2>
+            <div class="maze-info">
+                <span>Cupid-ыг 💕 руу хөтлөөрөй!</span>
+                <div class="score">Алхам: <span id="mazeSteps">0</span></div>
+            </div>
+            <div id="mazeGrid" class="maze-grid"></div>
+            <div class="maze-controls">
+                <div class="control-row">
+                    <button onclick="moveMaze('up')">⬆️</button>
+                </div>
+                <div class="control-row">
+                    <button onclick="moveMaze('left')">⬅️</button>
+                    <button onclick="resetMaze()">🔄</button>
+                    <button onclick="moveMaze('right')">➡️</button>
+                </div>
+                <div class="control-row">
+                    <button onclick="moveMaze('down')">⬇️</button>
+                </div>
+            </div>
+            <button onclick="backToMenu()">Буцах</button>
+        </div>
+
+        <!-- Love Calculator -->
+        <div id="loveCalculator" class="game-container" style="display:none;">
+            <h2>💘 Хайрын Тооцоолуур</h2>
+            <div class="calculator-container">
+                <div class="name-inputs">
+                    <div class="input-group">
+                        <label>💕 Эхний нэр:</label>
+                        <input type="text" id="name1" placeholder="Таны нэр" maxlength="20">
+                    </div>
+                    <div class="love-icon">❤️</div>
+                    <div class="input-group">
+                        <label>💖 Хоёрдахь нэр:</label>
+                        <input type="text" id="name2" placeholder="Хайртай хүнийхээ нэр" maxlength="20">
+                    </div>
+                </div>
+                <button onclick="calculateLove()" class="calculate-btn">💝 Тооцоолох</button>
+                <div id="loveResult" class="love-result"></div>
+            </div>
+            <button onclick="backToMenu()">Буцах</button>
+        </div>
+
+        <!-- Cupid Arrow Game -->
+        <div id="cupidArrow" class="game-container" style="display:none;">
+            <h2>🏹 Купидоны Сум</h2>
+            <div class="score">Оноо: <span id="arrowScore">0</span> | Үлдсэн сум: <span id="arrowsLeft">10</span></div>
+            <div class="arrow-game-area">
+                <div class="cupid" id="cupid">🏹</div>
+                <div class="targets-area" id="targetsArea"></div>
+                <div class="power-meter">
+                    <label>Хүч: </label>
+                    <div class="power-bar">
+                        <div class="power-fill" id="powerFill"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="arrow-controls">
+                <button onmousedown="chargePower()" onmouseup="shootArrow()" ontouchstart="chargePower()" ontouchend="shootArrow()">🎯 Хараах</button>
+            </div>
+            <button onclick="resetArrowGame()">Дахъя😡</button>
+            <button onclick="backToMenu()">Буцах</button>
+        </div>
+
+        <!-- Quote Modal -->
+        <div id="quoteModal" class="modal">
+            <div class="modal-content">
+                <h3>хохохо баяр хүргэе🔫</h3>
+                <div id="loveQuote" class="love-quote"></div>
+                <button onclick="closeQuote()">Хаах</button>
+            </div>
+        </div>
+
+        <!-- Floating Hearts Animation -->
+        <div class="floating-hearts"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
